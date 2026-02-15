@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import ServiceWizard from '../components/ServiceWizard'
 import './ContactPage.css'
 
 const container = {
@@ -15,23 +16,9 @@ const fadeUp = {
 }
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSending(true)
-    setTimeout(() => {
-      setSending(false)
-      setSubmitted(true)
-      setTimeout(() => setSubmitted(false), 4000)
-      e.target.reset()
-    }, 1000)
-  }
 
   return (
     <section className="contact-page">
@@ -49,7 +36,7 @@ export default function ContactPage() {
             <span className="gradient-text">your IT needs.</span>
           </motion.h1>
           <motion.p className="contact-page-subtitle" variants={fadeUp}>
-            Fill out the form below and we&rsquo;ll get back to you within one business day.
+            Answer a few quick questions and we&rsquo;ll prepare a tailored recommendation.
             No commitment, no pressure&mdash;just a conversation about how we can help.
           </motion.p>
         </motion.div>
@@ -60,51 +47,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <form className="contact-page-form" onSubmit={handleSubmit}>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="you@company.com" required />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Your company name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone <span className="form-optional">(optional)</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="service">Service of Interest</label>
-              <select id="service" name="service" defaultValue="">
-                <option value="" disabled>Select a service</option>
-                <option value="google-workspace">Google Workspace & Email</option>
-                <option value="network">Network Setup & Management</option>
-                <option value="website">Website Hosting & Management</option>
-                <option value="other">Other / Not Sure</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell us about your business, current setup, and what you need help with..." />
-            </div>
-            <motion.button
-              type="submit"
-              className={`btn btn-primary btn-full ${submitted ? 'btn-success' : ''}`}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              disabled={sending}
-            >
-              {sending ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
-            </motion.button>
-          </form>
+          <ServiceWizard />
 
           <div className="contact-page-sidebar">
             <div className="sidebar-card">
@@ -135,15 +78,15 @@ export default function ContactPage() {
               <ul className="expect-list">
                 <li>
                   <span className="expect-number">1</span>
-                  <span>We&rsquo;ll review your submission within 24 hours</span>
+                  <span>We&rsquo;ll review your answers within 24 hours</span>
                 </li>
                 <li>
                   <span className="expect-number">2</span>
-                  <span>A team member will reach out to schedule a call</span>
+                  <span>A team member will reach out with a tailored recommendation</span>
                 </li>
                 <li>
                   <span className="expect-number">3</span>
-                  <span>We&rsquo;ll assess your needs and propose a solution</span>
+                  <span>We&rsquo;ll schedule a call to finalize the plan</span>
                 </li>
               </ul>
             </div>
