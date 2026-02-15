@@ -457,7 +457,7 @@ export default function ServiceWizard() {
           )}
 
           {step === 2 && selectedService && (
-            <motion.div key="questions" className="wizard-step-content" {...stepTransition}>
+            <motion.div key={`questions-${selectedService}`} className="wizard-step-content" {...stepTransition}>
               <div className="wizard-step-header">
                 <span className="wizard-step-tag">Step 3 of 4</span>
                 <h3 className="wizard-step-title">A few quick questions</h3>
