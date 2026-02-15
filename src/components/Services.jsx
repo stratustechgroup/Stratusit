@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+import NewsletterModal from './NewsletterModal'
 import './Services.css'
 
 const services = [
@@ -42,8 +44,11 @@ const cardVariants = {
 }
 
 export default function Services() {
+  const [showNewsletter, setShowNewsletter] = useState(false)
+
   return (
     <section className="services" id="services">
+      <NewsletterModal isOpen={showNewsletter} onClose={() => setShowNewsletter(false)} />
       <div className="container">
         <motion.div
           className="section-header"
@@ -110,12 +115,16 @@ export default function Services() {
               </div>
               <h3>More Services Coming Soon</h3>
               <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, cloud solutions, networking, and more.</p>
-              <a href="#contact" className="coming-soon-link">
+              <button
+                type="button"
+                className="coming-soon-link"
+                onClick={() => setShowNewsletter(true)}
+              >
                 Get notified
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>

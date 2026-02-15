@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import './Hero.css'
 
@@ -62,17 +63,14 @@ export default function Hero() {
         </motion.p>
 
         <motion.div className="hero-cta" variants={fadeUp}>
-          <motion.a
-            href="#contact"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Start a conversation
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.a>
+          <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}>
+            <Link to="/contact" className="btn btn-primary">
+              Start a conversation
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </motion.div>
           <motion.a
             href="#services"
             className="btn btn-secondary"
@@ -87,8 +85,6 @@ export default function Hero() {
           <Stat value="99.9%" label="Uptime guaranteed" />
           <div className="stat-divider" />
           <Stat value="HIPAA" label="Compliant solutions" />
-          <div className="stat-divider" />
-          <Stat value="24/7" label="Support available" />
         </motion.div>
       </motion.div>
 

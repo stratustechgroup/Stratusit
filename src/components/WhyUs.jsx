@@ -27,11 +27,6 @@ const features = [
     title: 'Vendor-Agnostic',
     description: 'We recommend the best tools for your needs\u2014not the ones that pay us the highest commission. Your success is our metric.',
   },
-  {
-    number: '06',
-    title: 'Real Humans, Real Support',
-    description: 'When you call, a person answers. Our support team knows your environment and resolves issues with context, not scripts.',
-  },
 ]
 
 const cellVariants = {
