@@ -26,7 +26,7 @@ const services = [
         <path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
       </svg>
     ),
-    features: ['HIPAA, SOC 2, PCI-DSS', 'Risk assessments', 'Policy development'],
+    features: ['HIPAA & PCI-DSS', 'Risk assessments', 'Policy development'],
   },
 ]
 

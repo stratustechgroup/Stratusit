@@ -62,7 +62,7 @@ export default function Nav() {
           >
             <Logo size={32} />
           </motion.div>
-          <span>Stratus</span>
+          <span className="logo-text">stratus<span className="logo-accent">tg</span></span>
         </Link>
 
         <div className="nav-links">

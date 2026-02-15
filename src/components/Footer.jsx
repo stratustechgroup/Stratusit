@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
               <Logo size={32} />
-              <span>Stratus</span>
+              <span className="logo-text">stratus<span className="logo-accent">tg</span></span>
             </Link>
             <p>
               Managed IT services and cloud solutions for businesses that demand

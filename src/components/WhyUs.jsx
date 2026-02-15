@@ -10,7 +10,7 @@ const features = [
   {
     number: '02',
     title: 'Compliance-First Approach',
-    description: 'From HIPAA to SOC 2, we build compliance into every solution from the ground up. No afterthoughts, no bolt-ons.',
+    description: 'From HIPAA to PCI-DSS, we build compliance into every solution from the ground up. No afterthoughts, no bolt-ons.',
   },
   {
     number: '03',
