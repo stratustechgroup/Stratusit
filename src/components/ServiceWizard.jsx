@@ -87,9 +87,15 @@ const SERVICE_QUESTIONS = {
       },
       {
         id: 'platform',
-        label: 'What platform is it on?',
+        label: 'What platform is it built on?',
         type: 'select',
         options: ['WordPress', 'Squarespace', 'Wix', 'Shopify', 'Custom-built', "Don't know", 'N/A'],
+      },
+      {
+        id: 'current_hosting',
+        label: 'Where is your site currently hosted?',
+        type: 'select',
+        options: ['GoDaddy', 'Bluehost', 'AWS', 'Google Cloud', "Don't know", 'N/A — no site yet'],
       },
       {
         id: 'domain_needed',
@@ -101,7 +107,19 @@ const SERVICE_QUESTIONS = {
         id: 'website_needs',
         label: 'What do you need help with?',
         type: 'multi',
-        options: ['Hosting', 'SSL & security', 'Redesign', 'Ongoing maintenance', 'Performance optimization', 'Other'],
+        options: ['Hosting & migration', 'SSL & security', 'Full redesign', 'Content updates', 'Ongoing maintenance', 'Performance / speed', 'SEO basics', 'Email integration'],
+      },
+      {
+        id: 'site_purpose',
+        label: 'What is the primary purpose of your website?',
+        type: 'select',
+        options: ['Company info / brochure', 'Lead generation', 'E-commerce / online store', 'Blog / content', 'Client portal', 'Other'],
+      },
+      {
+        id: 'monthly_visitors',
+        label: 'Roughly how much traffic does your site get?',
+        type: 'select',
+        options: ['Under 1,000/mo', '1,000–10,000/mo', '10,000+/mo', 'No idea', 'N/A — no site yet'],
       },
       {
         id: 'timeline',
@@ -116,15 +134,33 @@ const SERVICE_QUESTIONS = {
     desc: "We'll help you figure out the right solution.",
     questions: [
       {
-        id: 'description',
-        label: 'Can you briefly describe what you\'re looking for?',
-        type: 'textarea',
+        id: 'pain_points',
+        label: "What's your biggest IT frustration right now?",
+        type: 'multi',
+        options: ['Slow or unreliable internet', 'Email issues', 'Security concerns', 'No IT support', 'Outdated equipment', 'Website problems', 'Not sure where to start'],
+      },
+      {
+        id: 'current_support',
+        label: 'Do you currently have IT support?',
+        type: 'select',
+        options: ['Yes, in-house team', 'Yes, outsourced provider', 'One person wears many hats', 'No, we handle it ourselves'],
+      },
+      {
+        id: 'industry',
+        label: 'What industry are you in?',
+        type: 'select',
+        options: ['Healthcare', 'Legal', 'Finance', 'Real estate', 'Retail / restaurant', 'Construction / trades', 'Nonprofit', 'Other'],
       },
       {
         id: 'org_size',
         label: 'How many people are in your organization?',
         type: 'select',
         options: ['1-5', '6-15', '16-50', '51-100', '100+'],
+      },
+      {
+        id: 'description',
+        label: 'Anything else you want us to know?',
+        type: 'textarea',
       },
       {
         id: 'timeline',
