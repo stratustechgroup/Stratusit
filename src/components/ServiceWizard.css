@@ -1,101 +1,198 @@
 /* ========================================
-   Service Wizard — Guided Intake
+   Service Wizard — Premium Guided Intake
+   Matches dub.co / attio.com aesthetic
    ======================================== */
 
+/* --- Card Shell --- */
 .wizard-card {
-  background: var(--color-bg-card);
+  position: relative;
+  background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 0;
   overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 2px 20px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.wizard-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(ellipse at center, var(--color-accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* --- Progress Bar --- */
 .wizard-progress {
-  height: 3px;
-  background: var(--color-border);
+  height: 2px;
+  background: var(--color-border-subtle);
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .wizard-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-  border-radius: 0 3px 3px 0;
-  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light), #38bdf8);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 12px var(--color-accent-glow-strong);
 }
 
-/* --- Step Indicators --- */
+/* ========================================
+   Step Indicators — Connected Track
+   ======================================== */
 .wizard-steps {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  padding: 28px 40px 0;
+  position: relative;
+  z-index: 1;
+  padding: 32px 48px 0;
 }
 
-.wizard-step-dot {
+.wizard-steps-track {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.wizard-step-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
-  opacity: 0.4;
-  transition: opacity 0.3s;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
 }
 
-.wizard-step-dot.active {
-  opacity: 1;
+/* Connector line between circles */
+.wizard-step-connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 20px);
+  width: calc(100% - 8px);
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+  border-radius: 1px;
+  transition: background 0.4s;
 }
 
-.wizard-step-number {
-  width: 28px;
-  height: 28px;
+.wizard-step-item:nth-child(1) .wizard-step-connector { width: calc(250% - 40px); }
+.wizard-step-item:nth-child(2) .wizard-step-connector { width: calc(250% - 40px); }
+.wizard-step-item:nth-child(3) .wizard-step-connector { width: calc(250% - 40px); }
+
+.wizard-step-connector.filled {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+}
+
+/* Circles */
+.wizard-step-circle {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   font-size: 0.75rem;
   font-weight: 700;
-  background: var(--color-border);
-  color: var(--color-text-muted);
-  transition: all 0.3s;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
 }
 
-.wizard-step-dot.active .wizard-step-number {
+.wizard-step-item.upcoming .wizard-step-circle {
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.wizard-step-item.current .wizard-step-circle {
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  color: white;
+  box-shadow:
+    0 0 0 4px rgba(59, 130, 246, 0.15),
+    0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.wizard-step-item.completed .wizard-step-circle {
   background: var(--color-accent-glow-strong);
+  border: 2px solid var(--color-accent);
   color: var(--color-accent-light);
 }
 
-.wizard-step-dot.current .wizard-step-number {
-  background: var(--color-accent);
-  color: white;
-  box-shadow: 0 0 16px var(--color-accent-glow-strong);
+.wizard-check-icon {
+  width: 14px;
+  height: 14px;
 }
 
+/* Labels */
 .wizard-step-label {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+  transition: color 0.3s;
 }
 
-.wizard-step-dot.current .wizard-step-label {
+.wizard-step-item.upcoming .wizard-step-label {
+  color: var(--color-text-muted);
+}
+
+.wizard-step-item.current .wizard-step-label {
   color: var(--color-text);
 }
 
-/* --- Step Content --- */
+.wizard-step-item.completed .wizard-step-label {
+  color: var(--color-accent-light);
+}
+
+/* ========================================
+   Step Content Area
+   ======================================== */
+.wizard-body {
+  position: relative;
+  z-index: 1;
+  min-height: 320px;
+}
+
 .wizard-step-content {
-  padding: 32px 40px 0;
+  padding: 36px 48px 0;
+}
+
+.wizard-step-header {
+  margin-bottom: 28px;
+}
+
+.wizard-step-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-light);
+  background: var(--color-accent-glow);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
 }
 
 .wizard-step-title {
   font-family: var(--font-display);
-  font-size: 1.375rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
 .wizard-step-desc {
   font-size: 0.9375rem;
   color: var(--color-text-secondary);
-  margin-bottom: 28px;
   line-height: 1.6;
 }
 
@@ -115,71 +212,122 @@
   color: var(--color-accent-light);
 }
 
-/* --- Service Selection Cards --- */
+/* Enhanced inputs inside wizard */
+.wizard-card .form-group input,
+.wizard-card .form-group textarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.wizard-card .form-group input:focus,
+.wizard-card .form-group textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2) inset,
+    0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ========================================
+   Service Selection Cards
+   ======================================== */
 .wizard-service-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
-.wizard-service-card {
+.wizard-svc {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 24px 16px;
-  background: var(--color-bg-elevated);
+  gap: 8px;
+  padding: 28px 20px 24px;
+  background: var(--color-bg);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-  position: relative;
   font-family: var(--font-sans);
   color: var(--color-text);
+  text-align: center;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  will-change: transform;
 }
 
-.wizard-service-card:hover {
-  border-color: var(--color-text-muted);
+.wizard-svc:hover {
   background: var(--color-bg-card-hover);
+  border-color: var(--color-text-muted);
 }
 
-.wizard-service-card.selected {
+.wizard-svc.selected {
   border-color: var(--color-accent);
-  background: var(--color-accent-glow);
-  box-shadow: 0 0 24px var(--color-accent-glow);
+  background: linear-gradient(180deg, var(--color-accent-glow) 0%, var(--color-bg-card) 100%);
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    0 0 40px rgba(59, 130, 246, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.wizard-service-icon {
-  width: 40px;
-  height: 40px;
+.wizard-svc.selected:hover {
+  border-color: var(--color-accent-light);
+}
+
+/* Icon container — matches Services.css pattern */
+.wizard-svc-icon-wrap {
+  margin-bottom: 4px;
+}
+
+.wizard-svc-icon {
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--color-accent-glow);
+  border-radius: var(--radius-sm);
+  transition: background 0.25s;
 }
 
-.wizard-service-icon svg {
-  width: 24px;
-  height: 24px;
-  color: var(--color-text-muted);
-  transition: color 0.2s;
-}
-
-.wizard-service-card.selected .wizard-service-icon svg {
+.wizard-svc-icon svg {
+  width: 22px;
+  height: 22px;
   color: var(--color-accent-light);
+  transition: color 0.25s;
 }
 
-.wizard-service-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1.3;
+.wizard-svc:not(.selected) .wizard-svc-icon {
+  background: rgba(113, 113, 122, 0.08);
 }
 
-.wizard-service-badge {
+.wizard-svc:not(.selected) .wizard-svc-icon svg {
+  color: var(--color-text-muted);
+}
+
+.wizard-svc-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.wizard-svc-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.wizard-svc.selected .wizard-svc-desc {
+  color: var(--color-text-secondary);
+}
+
+/* Badge */
+.wizard-svc-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 0.625rem;
+  top: 10px;
+  right: 10px;
+  font-size: 0.5625rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -189,145 +337,321 @@
   color: white;
 }
 
-/* --- Option Buttons (select / multi) --- */
+/* Radio indicator */
+.wizard-svc-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  margin-top: 4px;
+  position: relative;
+  transition: border-color 0.25s;
+}
+
+.wizard-svc.selected .wizard-svc-radio {
+  border-color: var(--color-accent);
+}
+
+.wizard-svc-radio-fill {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ========================================
+   Questions Step
+   ======================================== */
+.wizard-questions {
+  gap: 28px;
+}
+
+.wizard-question {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wizard-question-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.wizard-question-num {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-glow);
+  color: var(--color-accent-light);
+  border-radius: 50%;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.wizard-multi-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Option pills */
 .wizard-option-group {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.wizard-option {
+.wizard-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 500;
-  padding: 8px 16px;
+  padding: 9px 16px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  background: var(--color-bg);
   color: var(--color-text-secondary);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 
-.wizard-option:hover {
+.wizard-pill:hover {
   border-color: var(--color-text-muted);
   color: var(--color-text);
+  background: var(--color-bg-card-hover);
 }
 
-.wizard-option.selected {
+.wizard-pill.selected {
   border-color: var(--color-accent);
   background: var(--color-accent-glow);
   color: var(--color-accent-light);
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.08);
 }
 
-/* --- Review --- */
+.wizard-pill .wizard-check-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-accent-light);
+}
+
+/* ========================================
+   Review Step
+   ======================================== */
 .wizard-review {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .wizard-review-section {
-  background: var(--color-bg-elevated);
+  background: var(--color-bg);
   border-radius: var(--radius);
   padding: 24px;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-border);
 }
 
-.wizard-review-section h4 {
-  font-size: 0.875rem;
+.wizard-review-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.wizard-review-section-head h4 {
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--color-accent-light);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
+  letter-spacing: 0.06em;
+}
+
+.wizard-edit-btn {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wizard-edit-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
 }
 
 .wizard-review-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
-.wizard-review-grid > div {
+.wizard-review-cell {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .wizard-review-answers {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.wizard-review-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  gap: 14px;
 }
 
 .review-label {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .review-value {
   font-size: 0.9375rem;
   color: var(--color-text);
+  font-weight: 500;
 }
 
-/* --- Error --- */
+/* ========================================
+   Error
+   ======================================== */
 .wizard-error {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-  padding: 12px 16px;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: var(--radius-sm);
   color: #fca5a5;
   font-size: 0.875rem;
+  font-weight: 500;
 }
 
-/* --- Navigation --- */
+.wizard-error svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Navigation
+   ======================================== */
 .wizard-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 40px 32px;
+  padding: 32px 48px 36px;
+  position: relative;
+  z-index: 1;
 }
 
-.wizard-back {
+/* Back button — ghost style */
+.wizard-back-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 4px;
+  transition: color 0.2s;
 }
 
-.wizard-next,
-.wizard-submit {
+.wizard-back-btn:hover {
+  color: var(--color-text);
+}
+
+.wizard-back-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Continue button — gradient accent */
+.wizard-continue-btn,
+.wizard-submit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  color: white;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #2563eb 100%);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(59, 130, 246, 0.15);
 }
 
-.wizard-next:disabled,
-.wizard-submit:disabled {
-  opacity: 0.4;
+.wizard-continue-btn:hover,
+.wizard-submit-btn:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(59, 130, 246, 0.25);
+}
+
+.wizard-continue-btn:disabled,
+.wizard-submit-btn:disabled {
+  opacity: 0.35;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* --- Spinner --- */
+.wizard-continue-btn svg,
+.wizard-submit-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wizard-submit-btn {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #7c3aed 100%);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 0 24px rgba(59, 130, 246, 0.12),
+    0 0 24px rgba(124, 58, 237, 0.1);
+}
+
+.wizard-submit-btn:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 36px rgba(59, 130, 246, 0.2),
+    0 0 36px rgba(124, 58, 237, 0.15);
+}
+
+/* ========================================
+   Spinner
+   ======================================== */
 .wizard-spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid transparent;
-  border-top-color: currentColor;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
   border-radius: 50%;
   animation: wizard-spin 0.6s linear infinite;
 }
@@ -336,27 +660,45 @@
   to { transform: rotate(360deg); }
 }
 
-/* --- Success --- */
+/* ========================================
+   Success State
+   ======================================== */
 .wizard-success {
-  padding: 80px 40px;
+  position: relative;
+  padding: 80px 48px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  overflow: hidden;
 }
 
-.wizard-success-icon {
-  width: 64px;
-  height: 64px;
+.wizard-success-glow {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.wizard-success-check {
+  width: 72px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(34, 197, 94, 0.15);
+  background: rgba(34, 197, 94, 0.1);
+  border: 2px solid rgba(34, 197, 94, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
-.wizard-success-icon svg {
+.wizard-success-check svg {
   width: 32px;
   height: 32px;
   color: var(--color-success);
@@ -364,30 +706,54 @@
 
 .wizard-success h3 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.625rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
 }
 
 .wizard-success p {
   font-size: 1rem;
   color: var(--color-text-secondary);
-  max-width: 400px;
+  max-width: 380px;
   line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
-/* --- Responsive --- */
+.wizard-success-email {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent-light);
+  background: var(--color-accent-glow);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
 @media (max-width: 768px) {
   .wizard-steps {
-    gap: 16px;
-    padding: 20px 20px 0;
+    padding: 24px 24px 0;
   }
 
   .wizard-step-label {
     display: none;
   }
 
+  .wizard-step-item:nth-child(1) .wizard-step-connector,
+  .wizard-step-item:nth-child(2) .wizard-step-connector,
+  .wizard-step-item:nth-child(3) .wizard-step-connector {
+    width: calc(300% - 32px);
+  }
+
   .wizard-step-content {
-    padding: 24px 20px 0;
+    padding: 28px 24px 0;
   }
 
   .wizard-row {
@@ -399,7 +765,7 @@
   }
 
   .wizard-nav {
-    padding: 24px 20px 28px;
+    padding: 24px 24px 28px;
   }
 
   .wizard-review-grid {
@@ -407,21 +773,33 @@
   }
 
   .wizard-success {
-    padding: 60px 20px;
+    padding: 60px 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .wizard-step-content {
+  .wizard-steps {
     padding: 20px 16px 0;
+  }
+
+  .wizard-step-content {
+    padding: 24px 16px 0;
   }
 
   .wizard-nav {
     padding: 20px 16px 24px;
   }
 
-  .wizard-option {
+  .wizard-pill {
     font-size: 0.75rem;
-    padding: 6px 12px;
+    padding: 7px 12px;
+  }
+
+  .wizard-svc {
+    padding: 20px 16px 18px;
+  }
+
+  .wizard-step-title {
+    font-size: 1.25rem;
   }
 }
