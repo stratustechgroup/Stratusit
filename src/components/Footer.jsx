@@ -30,7 +30,7 @@ export default function Footer() {
               <h4>Services</h4>
               <a href="/#services">Google Workspace</a>
               <a href="/#services">Network Management</a>
-              <a href="/#services">Compliance & Consulting</a>
+              <a href="/#services">Website Hosting</a>
             </div>
             <div className="footer-col">
               <h4>Company</h4>

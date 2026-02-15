@@ -29,15 +29,16 @@ const services = [
     features: ['Office Wi-Fi & cabling', 'Firewall & VPN configuration', 'Network monitoring & troubleshooting'],
   },
   {
-    title: 'Compliance & Consulting',
-    description: 'Navigate complex regulatory requirements with confidence. We help you achieve and maintain compliance across industry standards.',
+    title: 'Website Hosting & Management',
+    description: 'Reliable hosting, SSL certificates, and ongoing site maintenance so your web presence stays fast, secure, and always online.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-        <path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/>
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20"/>
+        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
       </svg>
     ),
-    features: ['HIPAA & PCI-DSS', 'Risk assessments', 'Policy development'],
+    features: ['Hosting & domain management', 'SSL & security configuration', 'CMS setup & maintenance', 'Uptime monitoring & performance'],
   },
 ]
 
@@ -125,7 +126,7 @@ export default function Services() {
                 </svg>
               </div>
               <h3>More Services Coming Soon</h3>
-              <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, cloud solutions, and more.</p>
+              <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, compliance consulting, and more.</p>
               <button
                 type="button"
                 className="coming-soon-link"

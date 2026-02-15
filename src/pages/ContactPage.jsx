@@ -87,7 +87,7 @@ export default function ContactPage() {
                 <option value="" disabled>Select a service</option>
                 <option value="google-workspace">Google Workspace & Email</option>
                 <option value="network">Network Setup & Management</option>
-                <option value="compliance">Compliance & Consulting</option>
+                <option value="website">Website Hosting & Management</option>
                 <option value="other">Other / Not Sure</option>
               </select>
             </div>
