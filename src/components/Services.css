@@ -7,6 +7,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .service-card {
@@ -101,10 +103,59 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* --- Coming Soon Card --- */
+.service-card-coming-soon {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.service-card-coming-soon:hover {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-text-muted);
+}
+
+.coming-soon-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coming-soon-icon {
+  background: rgba(113, 113, 122, 0.1);
+  margin-bottom: 20px;
+}
+
+.coming-soon-icon svg {
+  color: var(--color-text-muted);
+}
+
+.service-card-coming-soon h3 {
+  color: var(--color-text-secondary);
+}
+
+.service-card-coming-soon p {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  max-width: 260px;
+}
+
+.coming-soon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent-light);
+  transition: gap 0.2s;
+}
+
+.coming-soon-link:hover {
+  gap: 10px;
 }
 
 @media (max-width: 768px) {
@@ -114,6 +165,7 @@
 
   .services-grid {
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 }
 

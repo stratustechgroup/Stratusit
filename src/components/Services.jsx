@@ -16,49 +16,6 @@ const services = [
     features: ['HIPAA compliance certification', 'Email migration from any provider', 'Security policies & DLP configuration', 'Admin console setup & training'],
   },
   {
-    title: 'Managed IT Support',
-    description: 'Proactive monitoring, helpdesk support, and on-site service when you need it. We keep your systems running so you never miss a beat.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="3" width="20" height="14" rx="2"/>
-        <path d="M8 21h8"/><path d="M12 17v4"/>
-      </svg>
-    ),
-    features: ['24/7 remote monitoring', 'Dedicated helpdesk team', 'Patch management & updates'],
-  },
-  {
-    title: 'Cybersecurity',
-    description: 'Comprehensive threat protection from endpoint security to network monitoring. We identify vulnerabilities before they become breaches.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2l8 4v6c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V6l8-4z"/>
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
-    ),
-    features: ['Endpoint detection & response', 'Security audits & assessments', 'Employee security training'],
-  },
-  {
-    title: 'Cloud Solutions',
-    description: 'Seamless cloud migration, management, and optimization. Whether it\u2019s Azure, AWS, or Google Cloud\u2014we architect solutions that scale with you.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>
-      </svg>
-    ),
-    features: ['Cloud migration planning', 'Backup & disaster recovery', 'Cost optimization'],
-  },
-  {
-    title: 'Network Infrastructure',
-    description: 'From initial design to ongoing management, we build reliable, secure networks that form the backbone of your operations.',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>
-        <path d="M12 8v4l-7 7"/><path d="M12 12l7 7"/>
-      </svg>
-    ),
-    features: ['Network design & deployment', 'Firewall & VPN management', 'Wi-Fi optimization'],
-  },
-  {
     title: 'Compliance & Consulting',
     description: 'Navigate complex regulatory requirements with confidence. We help you achieve and maintain compliance across industry standards.',
     icon: (
@@ -134,6 +91,33 @@ export default function Services() {
               </ul>
             </motion.div>
           ))}
+
+          {/* Coming Soon Card */}
+          <motion.div
+            className="service-card service-card-coming-soon"
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            custom={services.length}
+          >
+            <div className="coming-soon-inner">
+              <div className="service-icon coming-soon-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <h3>More Services Coming Soon</h3>
+              <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, cloud solutions, networking, and more.</p>
+              <a href="#contact" className="coming-soon-link">
+                Get notified
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

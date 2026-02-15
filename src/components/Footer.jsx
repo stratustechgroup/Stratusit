@@ -27,9 +27,7 @@ export default function Footer() {
             <div className="footer-col">
               <h4>Services</h4>
               <a href="#services">Google Workspace</a>
-              <a href="#services">Managed IT</a>
-              <a href="#services">Cybersecurity</a>
-              <a href="#services">Cloud Solutions</a>
+              <a href="#services">Compliance & Consulting</a>
             </div>
             <div className="footer-col">
               <h4>Company</h4>
