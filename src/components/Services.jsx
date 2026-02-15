@@ -18,6 +18,17 @@ const services = [
     features: ['HIPAA compliance certification', 'Email migration from any provider', 'Security policies & DLP configuration', 'Admin console setup & training'],
   },
   {
+    title: 'Network Setup & Management',
+    description: 'From initial design to ongoing management, we build reliable, secure networks that keep your business connected and protected.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>
+        <path d="M12 8v4l-7 7"/><path d="M12 12l7 7"/>
+      </svg>
+    ),
+    features: ['Office Wi-Fi & cabling', 'Firewall & VPN configuration', 'Network monitoring & troubleshooting'],
+  },
+  {
     title: 'Compliance & Consulting',
     description: 'Navigate complex regulatory requirements with confidence. We help you achieve and maintain compliance across industry standards.',
     icon: (
@@ -114,7 +125,7 @@ export default function Services() {
                 </svg>
               </div>
               <h3>More Services Coming Soon</h3>
-              <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, cloud solutions, networking, and more.</p>
+              <p>We&rsquo;re expanding our offerings. Stay tuned for managed IT support, cybersecurity, cloud solutions, and more.</p>
               <button
                 type="button"
                 className="coming-soon-link"
