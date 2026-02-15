@@ -10,8 +10,8 @@ export default function Logo({ size = 32, className = '' }) {
     >
       <defs>
         <linearGradient id="logo-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#f97316" />
-          <stop offset="100%" stopColor="#fb923c" />
+          <stop offset="0%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#60a5fa" />
         </linearGradient>
       </defs>
       {/* Rounded square base */}
